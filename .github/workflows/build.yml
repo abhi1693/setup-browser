@@ -35,8 +35,8 @@ jobs:
           browser: chrome
           version: latest
       - if: runner.os == 'Linux'
-        run: ${{ steps.browser.binary }} --version
+        run: ${{ steps.browser.outputs.binary }} --version
       - if: runner.os == 'macOS'
-        run: ${{ steps.browser.binary }} --version
+        run: ${{ steps.browser.outputs.binary }} --version
       - if: runner.os == 'Windows'
-        run: (Get-Item (Get-Command ${{ steps.browser.binary }}).Source).VersionInfo.ProductVersion
+        run: (Get-Item (Get-Command ${{ steps.browser.outputs.binary }}).Source).VersionInfo.ProductVersion
