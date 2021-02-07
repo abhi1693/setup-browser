@@ -10,8 +10,8 @@ This action sets various different browsers for use:
 - [ ] Install and setup latest Edge
 - [ ] Install and setup latest Firefox
 - [x] Cross platform runner (macOS, Linux, Windows)
-- [ ] Install by channel (stable, beta, dev, and canary)
-- [ ] Install by version number (88.0.4324, or 88.0)
+- [x] Install by channel (stable, beta, dev, and canary)
+- [x] Install by version number (88.0.4324, or 88.0)
 
 ## Usage
 
