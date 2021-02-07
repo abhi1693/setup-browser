@@ -30,12 +30,13 @@ jobs:
         run: yarn package
 
       - uses: ./dist/
+        id: browser
         with:
           browser: chrome
           version: latest
       - if: runner.os == 'Linux'
-        run: chrome --version
+        run: ${{ steps.browser.binary }} --version
       - if: runner.os == 'macOS'
-        run: chromium --version
+        run: ${{ steps.browser.binary }} --version
       - if: runner.os == 'Windows'
-        run: (Get-Item (Get-Command chrome).Source).VersionInfo.ProductVersion
+        run: (Get-Item (Get-Command ${{ steps.browser.binary }}).Source).VersionInfo.ProductVersion
