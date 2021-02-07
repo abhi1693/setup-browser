@@ -116,6 +116,8 @@ export class WindowsInstaller implements InstallerFactory {
         return "C:\\Program Files\\Google\\Chrome Dev\\Application";
       case Version.CANARY:
         return "C:\\Program Files\\Google\\Chrome SxS\\Application";
+      default:
+        throw new UnsupportedPlatformError(getPlatform(), version);
     }
   };
 }
