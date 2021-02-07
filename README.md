@@ -1,5 +1,5 @@
 <p>
-  <a href="https://github.com/abhi1693/setup-browser/actions"><img alt="action status" src="https://github.com/abhi1693/setup-browser/workflows/ci/badge.svg"></a>
+  <a href="https://github.com/abhi1693/setup-browser/actions"><img alt="action status" src="https://github.com/abhi1693/setup-browser/workflows/action%20ci/badge.svg"></a>
 </p>
 
 # setup-browser
