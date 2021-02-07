@@ -1,0 +1,11 @@
+name: Generate action docs
+on:
+  push:
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Update README.md from action.yml
+        uses: Dirrk/action-docs@v1

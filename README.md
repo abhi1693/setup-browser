@@ -15,8 +15,6 @@ This action sets various different browsers for use:
 
 ## Usage
 
-See [action.yml](action.yml)
-
 Basic usage:
 
 ```yaml
@@ -27,24 +25,8 @@ steps:
       version: latest
 ```
 
-**Note that the installed binary is `chrome` but not `chromium` on Linux and
-Windows.** Be sure to pass a full-path to `chrome` to your test system if the
-system expects that `chromium` exists in PATH such as [karma-chromium-runner][]:
-
-[karma-chromium-runner]: https://github.com/karma-runner/karma-chrome-launcher
-
-```sh
-CHROMIUM_BIN=$(which chrome) npm run test
-```
-
-## Parameters
-
-- `browser`:
-  *(Required)* The browser to be installed.  Available options are `chrome`, `edge` and `firefox`.
-  
-- `version`:
-  *(Optional)* The browser version to be installed.  Available value is commit position like `848897` or `latest`.
-  Default: `latest`
+<!--- BEGIN_ACTION_DOCS --->
+<!--- END_ACTION_DOCS --->
 
 ## License
 

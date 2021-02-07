@@ -25,6 +25,9 @@ async function run(): Promise<void> {
     core.addPath(path.join(installDir));
     core.info(`Successfully setup ${browser} version ${version}`);
 
+    // Setup outputs
+    core.setOutput("binary", binName);
+
     if (getPlatform().os === OS.WINDOWS) {
       await io.which(browser, true);
     } else if (
