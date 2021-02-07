@@ -1,4 +1,4 @@
-name: action ci - dev
+name: action ci - latest
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browser: [chrome]
+        version: [latest, dev, beta, canary, stable, 850100]
         os: [ubuntu, macos, windows]
     runs-on: ${{ matrix.os }}-latest
     steps:
@@ -30,12 +30,12 @@ jobs:
       - name: Package action
         run: yarn package
 
-      - name: Install ${{ matrix.browser }} dev
+      - name: Install chrome ${{ matrix.version }}
         uses: ./dist/
         id: browser
         with:
-          browser: ${{ matrix.browser }}
-          version: dev
+          browser: chrome
+          version: ${{ matrix.version }}
       - if: runner.os != 'Windows'
         run: ${{ steps.browser.outputs.binary }} --version
       - if: runner.os == 'Windows'
