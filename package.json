@@ -9,7 +9,7 @@
     "lint:fix": "eslint --fix --ext .ts src/",
     "local": "npm run build && node dist/index.js",
     "package": "cp action.yml README.md dist/",
-    "test": "jest"
+    "test": ""
   },
   "keywords": [
     "actions",
