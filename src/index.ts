@@ -7,14 +7,8 @@ import { getPlatform, OS } from "./platform";
 
 async function run(): Promise<void> {
   try {
-    let browser = core.getInput("browser");
+    const browser = core.getInput("browser");
     const version = core.getInput("version") || "latest";
-
-    if (getPlatform().os === OS.DARWIN) {
-      if (browser === "chrome") {
-        browser = "chromium";
-      }
-    }
 
     core.info(`Setup ${browser} ${version}`);
 
