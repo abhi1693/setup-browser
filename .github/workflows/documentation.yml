@@ -1,6 +1,8 @@
 name: Generate action docs
 on:
   push:
+    paths:
+      - action.yml
 jobs:
   docs:
     runs-on: ubuntu-latest
