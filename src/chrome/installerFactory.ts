@@ -92,7 +92,8 @@ export class WindowsInstaller implements InstallerFactory {
     const url = new DownloadUrlFactory(version).create().getUrl();
     core.info(`Downloading chromium ${version} from ${url}`);
     const archive = await tc.downloadTool(url);
-    return { archive };
+    await fs.promises.rename(archive, `${archive}.exe`);
+    return { archive: `${archive}.exe` };
   }
 
   async install(version: string, archive: string): Promise<InstallResult> {
