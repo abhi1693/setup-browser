@@ -26,6 +26,18 @@ steps:
 ```
 
 <!--- BEGIN_ACTION_DOCS --->
+## Inputs
+
+| Name | Description | Default | Required |
+|------|-------------|---------|----------|
+| browser | The browser to install [chrome, edge, firefox]. | N/A | true |
+| version | The version to install. | latest | false |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| binary | The name of the installed binary. |
 <!--- END_ACTION_DOCS --->
 
 ## License
