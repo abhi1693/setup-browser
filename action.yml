@@ -14,7 +14,10 @@ inputs:
       The version to install.
     required: false
     default: latest
-
+outputs:
+  binary:
+    description: |-
+      The name of the installed binary.
 runs:
   using: 'node12'
   main: 'index.js'

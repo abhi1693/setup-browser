@@ -9,6 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        browser: [chrome]
         os: [ubuntu, macos, windows]
     runs-on: ${{ matrix.os }}-latest
     steps:
@@ -29,13 +30,13 @@ jobs:
       - name: Package action
         run: yarn package
 
-      - uses: ./dist/
+      - name: Install ${{ matrix.browser }}
+        uses: ./dist/
+        id: browser
         with:
-          browser: chrome
+          browser: ${{ matrix.browser }}
           version: latest
-      - if: runner.os == 'Linux'
-        run: chrome --version
-      - if: runner.os == 'macOS'
-        run: chromium --version
+      - if: runner.os != 'Windows'
+        run: ${{ steps.browser.outputs.binary }} --version
       - if: runner.os == 'Windows'
-        run: (Get-Item (Get-Command chrome).Source).VersionInfo.ProductVersion
+        run: (Get-Item (Get-Command ${{ steps.browser.outputs.binary }}).Source).VersionInfo.ProductVersion

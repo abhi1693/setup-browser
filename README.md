@@ -1,5 +1,5 @@
 <p>
-  <a href="https://github.com/abhi1693/setup-browser/actions"><img alt="action status" src="https://github.com/abhi1693/setup-browser/workflows/ci/badge.svg"></a>
+  <a href="https://github.com/abhi1693/setup-browser/actions"><img alt="action status" src="https://github.com/abhi1693/setup-browser/workflows/action%20ci/badge.svg"></a>
 </p>
 
 # setup-browser
@@ -15,8 +15,6 @@ This action sets various different browsers for use:
 
 ## Usage
 
-See [action.yml](action.yml)
-
 Basic usage:
 
 ```yaml
@@ -27,24 +25,20 @@ steps:
       version: latest
 ```
 
-**Note that the installed binary is `chrome` but not `chromium` on Linux and
-Windows.** Be sure to pass a full-path to `chrome` to your test system if the
-system expects that `chromium` exists in PATH such as [karma-chromium-runner][]:
+<!--- BEGIN_ACTION_DOCS --->
+## Inputs
 
-[karma-chromium-runner]: https://github.com/karma-runner/karma-chrome-launcher
+| Name | Description | Default | Required |
+|------|-------------|---------|----------|
+| browser | The browser to install [chrome, edge, firefox]. | N/A | true |
+| version | The version to install. | latest | false |
 
-```sh
-CHROMIUM_BIN=$(which chrome) npm run test
-```
+## Outputs
 
-## Parameters
-
-- `browser`:
-  *(Required)* The browser to be installed.  Available options are `chrome`, `edge` and `firefox`.
-  
-- `version`:
-  *(Optional)* The browser version to be installed.  Available value is commit position like `848897` or `latest`.
-  Default: `latest`
+| Name | Description |
+|------|-------------|
+| binary | The name of the installed binary. |
+<!--- END_ACTION_DOCS --->
 
 ## License
 

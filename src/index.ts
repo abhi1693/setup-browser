@@ -7,14 +7,8 @@ import { getPlatform, OS } from "./platform";
 
 async function run(): Promise<void> {
   try {
-    let browser = core.getInput("browser");
+    const browser = core.getInput("browser");
     const version = core.getInput("version") || "latest";
-
-    if (getPlatform().os === OS.DARWIN) {
-      if (browser === "chrome") {
-        browser = "chromium";
-      }
-    }
 
     core.info(`Setup ${browser} ${version}`);
 
@@ -24,6 +18,9 @@ async function run(): Promise<void> {
 
     core.addPath(path.join(installDir));
     core.info(`Successfully setup ${browser} version ${version}`);
+
+    // Setup outputs
+    core.setOutput("binary", binName);
 
     if (getPlatform().os === OS.WINDOWS) {
       await io.which(browser, true);
