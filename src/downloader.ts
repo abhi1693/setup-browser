@@ -4,16 +4,7 @@ import * as http from "@actions/http-client";
 import * as core from "@actions/core";
 
 export class DownloaderChrome {
-  browserName: string;
   private readonly hc = new http.HttpClient("setup-browser");
-
-  constructor(isChromium: boolean) {
-    this.browserName = "chrome";
-
-    if (isChromium) {
-      this.browserName = "chromium";
-    }
-  }
 
   makeBasename = ({ os }: Platform): string => {
     switch (os) {
