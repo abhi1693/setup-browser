@@ -1,0 +1,37 @@
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+template: |
+  # What's Changed
+  $CHANGES
+categories:
+  - title: "Breaking"
+    label: "breaking"
+  - title: "New"
+    label: "feature"
+  - title: "Bug Fixes"
+    label: "bug"
+  - title: "Testing"
+    label: "tests"
+  - title: "Maintenance"
+    label: "maintenance"
+  - title: "Documentation"
+    label: "docs"
+  - title: "Dependency Updates"
+    label: "dependencies"
+
+version-resolver:
+  major:
+    labels:
+      - "breaking"
+  minor:
+    labels:
+      - "feature"
+  patch:
+    labels:
+      - "bug"
+      - "maintenance"
+      - "docs"
+      - "dependencies"
+      - "security"
+      - "patch"
+      - "tests"

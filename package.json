@@ -1,0 +1,46 @@
+{
+  "name": "setup-browser",
+  "version": "0.0.0",
+  "description": "Set up your GitHub Actions workflow with a specific version of browser",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/index.js -o dist --source-map --license LICENSE",
+    "lint": "eslint --ext .js src/",
+    "lint:fix": "eslint --fix --ext .js src/",
+    "local": "npm run build && node dist/index.js",
+    "package": "cp action.yml README.md dist/",
+    "test": "jest"
+  },
+  "keywords": [
+    "actions",
+    "node",
+    "setup",
+    "chromium",
+    "chrome",
+    "firefox",
+    "edge",
+    "browser"
+  ],
+  "author": "Abhimanyu Saharan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abhi1693/setup-browser/issues"
+  },
+  "homepage": "https://github.com/abhi1693/setup-browser#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/http-client": "^1.0.9",
+    "@actions/tool-cache": "^1.6.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.27.0",
+    "eslint": "^7.19.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhi1693/setup-browser.git"
+  }
+}
