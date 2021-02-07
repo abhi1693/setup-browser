@@ -18,12 +18,13 @@ export class DownloaderChrome {
   makeBasename = ({ os }: Platform): string => {
     switch (os) {
       case OS.DARWIN:
-        return `${this.browserName}-${OS.DARWIN}.zip`;
+        return "chrome-mac.zip";
       case OS.LINUX:
-        return `${this.browserName}-${OS.LINUX}.zip`;
+        return "chrome-linux.zip";
       case OS.WINDOWS:
-        return `${this.browserName}-${OS.WINDOWS}.zip`;
+        return "chrome-win.zip";
     }
+    throw new Error(`Unsupported platform ${os}`);
   };
   makePlatformPart = ({ os, arch }: Platform): string => {
     if (os === OS.DARWIN && arch === Arch.AMD64) {
