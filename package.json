@@ -4,7 +4,7 @@
   "description": "Set up your GitHub Actions workflow with a specific version of browser",
   "main": "dist/index.js",
   "scripts": {
-    "build": "ncc build src/index.ts -o dist --source-map --license LICENSE",
+    "build": "ncc build index.ts -o dist --source-map --license LICENSE",
     "lint": "eslint --ext .ts src/",
     "lint:fix": "eslint --fix --ext .ts src/",
     "local": "npm run build && node dist/index.js",

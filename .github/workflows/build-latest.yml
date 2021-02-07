@@ -30,7 +30,7 @@ jobs:
       - name: Package action
         run: yarn package
 
-      - name: Install ${{ matrix.browser }}
+      - name: Install ${{ matrix.browser }} latest
         uses: ./dist/
         id: browser
         with:
