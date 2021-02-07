@@ -100,6 +100,8 @@ export class WindowsInstaller implements InstallerFactory {
       throw new UnsupportedPlatformError(getPlatform(), version);
     }
     await exec.exec(archive, ["/silent", "/install"]);
+    core.info(`Successfully install chromium tp ${this.rootDir(version)}`);
+
     return { root: this.rootDir(version), bin: "chrome.exe" };
   }
 
@@ -116,4 +118,83 @@ export class WindowsInstaller implements InstallerFactory {
         return "C:\\Program Files\\Google\\Chrome SxS\\Application";
     }
   };
+}
+
+export class MacOsInstaller implements InstallerFactory {
+  async checkInstalled(version: string): Promise<InstallResult | undefined> {
+    if (!isVersion(version)) {
+      throw new UnsupportedPlatformError(getPlatform(), version);
+    }
+
+    const root = tc.find("chromium", version);
+    if (root) {
+      return { root, bin: "Contents/MacOS/chrome" };
+    }
+    return undefined;
+  }
+
+  async download(version: string): Promise<DownloadResult> {
+    if (!isVersion(version)) {
+      throw new UnsupportedPlatformError(getPlatform(), version);
+    }
+
+    const url = new DownloadUrlFactory(version).create().getUrl();
+    core.info(`Downloading chromium ${version} from ${url}`);
+    const archive = await tc.downloadTool(url);
+    return { archive };
+  }
+
+  async install(version: string, archive: string): Promise<InstallResult> {
+    if (!isVersion(version)) {
+      throw new UnsupportedPlatformError(getPlatform(), version);
+    }
+
+    const mountPoint = path.join("/Volumes", path.basename(archive));
+    await exec.exec("hdiutil", [
+      "attach",
+      "-quiet",
+      "-noautofsck",
+      "-noautoopen",
+      "-mountpoint",
+      mountPoint,
+      archive,
+    ]);
+
+    let root = (() => {
+      switch (version) {
+        case Version.STABLE:
+          return path.join(mountPoint, "Google Chrome.app");
+        case Version.BETA:
+          return path.join(mountPoint, "Google Chrome Beta.app");
+        case Version.DEV:
+          return path.join(mountPoint, "Google Chrome Dev.app");
+        case Version.CANARY:
+          return path.join(mountPoint, "Google Chrome Canary.app");
+        default:
+          throw new UnsupportedPlatformError(getPlatform(), version);
+      }
+    })();
+
+    const bin = (() => {
+      switch (version) {
+        case Version.STABLE:
+          return "Contents/MacOS/Google Chrome";
+        case Version.BETA:
+          return "Contents/MacOS/Google Chrome Beta";
+        case Version.DEV:
+          return "Contents/MacOS/Google Chrome Dev";
+        case Version.CANARY:
+          return "Contents/MacOS/Google Chrome Canary";
+        default:
+          throw new UnsupportedPlatformError(getPlatform(), version);
+      }
+    })();
+    const bin2 = path.join(path.dirname(bin), "chrome");
+
+    root = await tc.cacheDir(root, "chromium", version);
+    await fs.promises.symlink(path.basename(bin), path.join(root, bin2));
+    core.info(`Successfully install chromium tp ${root}`);
+
+    return { root, bin: bin2 };
+  }
 }

@@ -6,7 +6,11 @@ import { Version } from "./version";
 import { Snapshot as SnapshotInstaller } from "./snapshot";
 import * as core from "@actions/core";
 import path from "path";
-import { LinuxInstaller, WindowsInstaller } from "./installerFactory";
+import {
+  LinuxInstaller,
+  MacOsInstaller,
+  WindowsInstaller,
+} from "./installerFactory";
 
 export const ChromeInstaller = async (version: string): Promise<string> => {
   const platform = getPlatform();
@@ -20,6 +24,7 @@ export const ChromeInstaller = async (version: string): Promise<string> => {
       case Version.STABLE:
         switch (platform.os) {
           case OS.DARWIN:
+            return new MacOsInstaller();
           case OS.LINUX:
             return new LinuxInstaller();
           case OS.WINDOWS:
