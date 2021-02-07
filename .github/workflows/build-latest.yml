@@ -1,4 +1,4 @@
-name: action ci - dev
+name: action ci - latest
 
 on:
   push:
