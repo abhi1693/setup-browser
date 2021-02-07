@@ -35,6 +35,6 @@ jobs:
       - if: runner.os == 'Linux'
         run: chrome --version
       - if: runner.os == 'macOS'
-        run: chrome --version
+        run: chromium --version
       - if: runner.os == 'Windows'
         run: (Get-Item (Get-Command chrome).Source).VersionInfo.ProductVersion
