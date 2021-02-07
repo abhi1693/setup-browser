@@ -12,19 +12,27 @@ jobs:
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
       - uses: actions/cache@v2
-        continue-on-error: true
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-yarn-
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
       - name: Build files
-        run: npm run build
+        run: yarn build
       - name: Run test cases
-        run: npm test
+        run: yarn test
       - name: Package action
-        run: npm run package
+        run: yarn package
 
+      - uses: ./dist/
+        with:
+          browser: chrome
+          version: latest
+      - if: runner.os == 'Windows'
+        run: (Get-Item (Get-Command chrome).Source).VersionInfo.ProductVersion
