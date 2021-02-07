@@ -14,7 +14,7 @@ inputs:
       The version to install.
     required: false
     default: latest
-output:
+outputs:
   binary:
     description: |-
       The name of the installed binary.
