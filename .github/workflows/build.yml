@@ -36,4 +36,7 @@ jobs:
         with:
           browser: ${{ matrix.browser }}
           version: latest
-      - run: ${{ steps.browser.outputs.binary }} --version
+      - if: runner.os != 'Windows'
+        run: ${{ steps.browser.outputs.binary }} --version
+      - if: runner.os == 'Windows'
+        run: (Get-Item (Get-Command ${{ steps.browser.outputs.binary }}).Source).VersionInfo.ProductVersion
