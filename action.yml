@@ -1,7 +1,9 @@
 name: 'Setup Browser'
 description: 'Install and setup various different browsers'
 author: "Abhimanyu Saharan"
-icon: bookmark
+branding:
+  icon: 'bookmark'
+  color: 'gray-dark'
 inputs:
   browser:
     description: |-
