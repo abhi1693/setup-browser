@@ -6,10 +6,10 @@
 
 This action sets various different browsers for use:
 
-- [ ] Install and setup latest Chrome
+- [x] Install and setup latest Chrome
 - [ ] Install and setup latest Edge
 - [ ] Install and setup latest Firefox
-- [ ] Cross platform runner (macOS, Linux, Windows)
+- [x] Cross platform runner (macOS, Linux, Windows)
 - [ ] Install by channel (stable, beta, dev, and canary)
 - [ ] Install by version number (88.0.4324, or 88.0)
 
