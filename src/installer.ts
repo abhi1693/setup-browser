@@ -18,8 +18,13 @@ export const install = async (
   core.info(`Attempting to download ${browser} (${version})...`);
   let archivePath;
 
-  if (browser === "chrome" || browser === "chromium") {
-    const downloader = new DownloaderChrome();
+  if (browser === "chrome") {
+    const downloader = new DownloaderChrome(false);
+    archivePath = await (async () => {
+      return await downloader.download(version);
+    })();
+  } else if (browser === "chromium") {
+    const downloader = new DownloaderChrome(true);
     archivePath = await (async () => {
       return await downloader.download(version);
     })();
@@ -46,9 +51,8 @@ export const install = async (
         return path.join(cacheDir, `${browser}-win`, `${browser}.exe`);
     }
   } else {
-    core.setFailed("missing archive path");
-    return "";
+    throw new Error("missing archive path");
   }
 
-  return "";
+  throw new Error("something went wrong");
 };

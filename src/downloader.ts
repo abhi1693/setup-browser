@@ -4,16 +4,25 @@ import * as http from "@actions/http-client";
 import * as core from "@actions/core";
 
 export class DownloaderChrome {
+  browserName: string;
   private readonly hc = new http.HttpClient("setup-browser");
+
+  constructor(isChromium: boolean) {
+    this.browserName = "chrome";
+
+    if (isChromium) {
+      this.browserName = "chromium";
+    }
+  }
 
   makeBasename = ({ os }: Platform): string => {
     switch (os) {
       case OS.DARWIN:
-        return "chrome-mac.zip";
+        return `${this.browserName}-${OS.DARWIN}.zip`;
       case OS.LINUX:
-        return "chrome-linux.zip";
+        return `${this.browserName}-${OS.LINUX}.zip`;
       case OS.WINDOWS:
-        return "chrome-win.zip";
+        return `${this.browserName}-${OS.WINDOWS}.zip`;
     }
   };
   makePlatformPart = ({ os, arch }: Platform): string => {
