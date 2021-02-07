@@ -34,6 +34,14 @@ export const install = async (
     core.info(`Successfully cached ${browser} to ${cacheDir}`);
 
     switch (getPlatform().os) {
+      case OS.DARWIN:
+        return path.join(
+          cacheDir,
+          `${browser}-mac`,
+          `${browser}.app/Contents/MacOS/${browser}`
+        );
+      case OS.LINUX:
+        return path.join(cacheDir, `${browser}-linux`, browser);
       case OS.WINDOWS:
         return path.join(cacheDir, `${browser}-win`, `${browser}.exe`);
     }
