@@ -33,3 +33,4 @@ jobs:
           commit-msg: "Updated CHANGELOG.md"
           file-path: ".github/CODEOWNERS"
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          branch: dev
