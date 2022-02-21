@@ -8,6 +8,7 @@ import { UnsupportedPlatformError } from "../errors";
 import { getPlatform } from "../platform";
 import fs from "fs";
 import * as exec from "@actions/exec";
+import path from "path";
 
 export interface InstallerFactory {
   checkInstalled(version: string): Promise<InstallResult | undefined>;
@@ -105,4 +106,67 @@ export class WindowsInstaller implements InstallerFactory {
         throw new UnsupportedPlatformError(getPlatform(), version);
     }
   };
+}
+
+export class MacOsInstaller implements InstallerFactory {
+  async checkInstalled(version: string): Promise<InstallResult | undefined> {
+    if (!isLatestVersion(version)) {
+      throw new UnsupportedPlatformError(getPlatform(), version);
+    }
+
+    const root = tc.find("firefox", version);
+    if (root) {
+      return { root, bin: "Contents/MacOS/firefox" };
+    }
+    return undefined;
+  }
+
+  async download(version: string): Promise<DownloadResult> {
+    if (!isLatestVersion(version)) {
+      throw new UnsupportedPlatformError(getPlatform(), version);
+    }
+
+    const url = new DownloadUrlFactory(version).create().getUrl();
+    core.info(`Downloading firefox ${version} from ${url}`);
+    const archive = await tc.downloadTool(url);
+    return { archive };
+  }
+
+  async install(version: string, archive: string): Promise<InstallResult> {
+    if (!isLatestVersion(version)) {
+      throw new UnsupportedPlatformError(getPlatform(), version);
+    }
+
+    const mountPoint = path.join("/Volumes", path.basename(archive));
+
+    await exec.exec("hdiutil", [
+      "attach",
+      "-quiet",
+      "-noautofsck",
+      "-noautoopen",
+      "-mountpoint",
+      mountPoint,
+      archive,
+    ]);
+
+    let root = (() => {
+      switch (version) {
+        case Version.LATEST_DEV_EDITION:
+        case Version.LATEST_BETA:
+        case Version.LATEST_ESR:
+        case Version.LATEST:
+          return path.join(mountPoint, "Firefox.app");
+        default:
+          throw new UnsupportedPlatformError(getPlatform(), version);
+      }
+    })();
+
+    core.info(`Successfully extracted firefox ${version} to ${root}`);
+
+    core.info("Adding to the cache ...");
+    root = await tc.cacheDir(root, "firefox", version);
+    core.info(`Successfully cached firefox ${version} to ${root}`);
+
+    return { root, bin: "Contents/MacOS/firefox" };
+  }
 }
