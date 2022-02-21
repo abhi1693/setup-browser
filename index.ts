@@ -18,6 +18,7 @@ async function run(): Promise<void> {
     const binName = path.basename(binPath);
 
     core.setOutput("binary", binName);
+    core.setOutput("path", path.join(installDir));
     core.addPath(path.join(installDir));
     core.info(`Successfully installed ${browser} version ${version}`);
   } catch (e) {

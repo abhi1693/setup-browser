@@ -36,6 +36,7 @@ steps:
 | Name | Description |
 |------|-------------|
 | binary | The name of the installed binary. |
+| path | Path of the installed binary. |
 <!--- END_ACTION_DOCS --->
 
 ## License
