@@ -9,6 +9,12 @@ on:
     branches:
       - main
 
+# This ensures that previous jobs for the workflow are canceled when the ref is
+# updated.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   update_release_draft:
     name: "Release Drafter"
