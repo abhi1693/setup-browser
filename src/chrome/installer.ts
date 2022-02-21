@@ -3,7 +3,7 @@
 import { getPlatform, OS } from "../platform";
 import { LatestInstaller } from "./latest";
 import { Version } from "./version";
-import { Snapshot as SnapshotInstaller } from "./snapshot";
+import { SnapshotInstaller } from "./snapshot";
 import * as core from "@actions/core";
 import path from "path";
 import {
@@ -18,7 +18,6 @@ export const ChromeInstaller = async (version: string): Promise<string> => {
     switch (version) {
       case Version.LATEST:
         return new LatestInstaller();
-      case Version.CANARY:
       case Version.DEV:
       case Version.BETA:
       case Version.STABLE:

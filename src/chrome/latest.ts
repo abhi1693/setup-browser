@@ -1,11 +1,11 @@
 import { InstallerFactory } from "./installerFactory";
 import * as hc from "@actions/http-client";
 import * as tc from "@actions/tool-cache";
-import { Snapshot as SnapshotInstaller } from "./snapshot";
-import { makePlatformPart } from "./utils";
+import { SnapshotInstaller } from "./snapshot";
 import { getPlatform } from "../platform";
 import { InstallResult } from "../installer";
 import { DownloadResult } from "../downloadUrl";
+import { makePlatformPart } from "./utils";
 
 export class LatestInstaller implements InstallerFactory {
   private readonly http = new hc.HttpClient("abhi1693/setup-browser");
