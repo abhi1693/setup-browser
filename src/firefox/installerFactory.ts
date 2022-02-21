@@ -86,7 +86,10 @@ export class WindowsInstaller implements InstallerFactory {
     if (!isLatestVersion(version)) {
       throw new UnsupportedPlatformError(getPlatform(), version);
     }
-    await exec.exec(archive, ["/S", `/InstallDirectoryName=${version}`]);
+    await exec.exec(archive, [
+      "/S",
+      `/InstallDirectoryName=Firefox_${version}`,
+    ]);
     core.info(`Successfully install firefox to ${this.rootDir(version)}`);
 
     return { root: this.rootDir(version), bin: "firefox.exe" };
