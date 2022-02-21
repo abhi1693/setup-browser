@@ -1,4 +1,4 @@
-import { makePlatformPart } from "../utils";
+import { makePlatformPart } from "./utils";
 import { getPlatform } from "../platform";
 import DownloadUrl from "../downloadUrl";
 import { makeBasename, productPart } from "./utils";

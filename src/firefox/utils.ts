@@ -1,4 +1,4 @@
-import { OS, Platform } from "../platform";
+import { Arch, OS, Platform } from "../platform";
 import { Version } from "./version";
 
 export const makeBasename = ({ os }: Platform, version: string): string => {
@@ -25,4 +25,19 @@ export const productPart = (version: string): string => {
     default:
       return "";
   }
+};
+
+export const makePlatformPart = ({ os, arch }: Platform): string => {
+  if (os === OS.DARWIN && arch === Arch.AMD64) {
+    return "osx";
+  } else if (os === OS.LINUX && arch === Arch.I686) {
+    return "linux";
+  } else if (os === OS.LINUX && arch === Arch.AMD64) {
+    return "linux64";
+  } else if (os === OS.WINDOWS && arch === Arch.I686) {
+    return "win";
+  } else if (os === OS.WINDOWS && arch === Arch.AMD64) {
+    return "win64";
+  }
+  throw new Error(`Unsupported platform "${os}" "${arch}"`);
 };

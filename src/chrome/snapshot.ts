@@ -6,7 +6,7 @@ import { InstallerFactory } from "./installerFactory";
 import { getPlatform, OS } from "../platform";
 import path from "path";
 import { makeBasename } from "./utils";
-import { makePlatformPart } from "../utils";
+import { makePlatformPart } from "./utils";
 
 export class SnapshotInstaller implements InstallerFactory {
   async checkInstalled(version: string): Promise<InstallResult | undefined> {
