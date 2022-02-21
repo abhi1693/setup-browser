@@ -1,4 +1,4 @@
-name: action ci - chrome
+name: action ci - firefox
 
 on:
   push:
@@ -9,15 +9,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [latest, dev, beta, canary, stable, 850100]
-        os: [ubuntu, macos, windows]
-        exclude:
-          - os: ubuntu
-            version: canary
-          - os: windows
-            version: canary
-          - os: macos
-            version: 850100
+        version: [latest, latest-devedition, latest-beta, latest-esr]
+        os: [ubuntu]
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
@@ -41,9 +34,5 @@ jobs:
         uses: ./dist/
         id: browser
         with:
-          browser: chrome
+          browser: firefox
           version: ${{ matrix.version }}
-      - if: runner.os != 'Windows'
-        run: ${{ steps.browser.outputs.binary }} --version
-      - if: runner.os == 'Windows'
-        run: (Get-Item (Get-Command ${{ steps.browser.outputs.binary }}).Source).VersionInfo.ProductVersion

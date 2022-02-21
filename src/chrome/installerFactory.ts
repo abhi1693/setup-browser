@@ -7,7 +7,7 @@ import path from "path";
 import { DownloadResult } from "../downloadUrl";
 import { UnsupportedPlatformError } from "../errors";
 import { InstallResult } from "../installer";
-import { Arch, getPlatform } from "../platform";
+import { getPlatform } from "../platform";
 import { DownloadUrlFactory } from "./downloadUrlFactory";
 import { isVersion, VERSION, Version } from "./version";
 
@@ -48,6 +48,7 @@ export class LinuxInstaller implements InstallerFactory {
       throw new Error(`Unexpected version: ${version}`);
     }
 
+    core.info("Extracting Chrome...");
     const tmpdir = await fs.promises.mkdtemp(path.join(os.tmpdir(), "deb-"));
     const extdir = await fs.promises.mkdtemp(path.join(os.tmpdir(), "chrome-"));
     await exec.exec("ar", ["x", archive], { cwd: tmpdir });
@@ -60,12 +61,14 @@ export class LinuxInstaller implements InstallerFactory {
       "4",
       "./opt/google",
     ]);
+    core.info(`Successfully extracted chrome ${version} to ${extdir}`);
 
     // remove broken symlinks
     await fs.promises.unlink(path.join(extdir, "google-chrome"));
 
+    core.info("Adding to the cache ...");
     const root = await tc.cacheDir(extdir, "chromium", version);
-    core.info(`Successfully install chromium tp ${root}`);
+    core.info(`Successfully cached chrome ${version} to ${root}`);
 
     return { root: extdir, bin: "chrome" };
   }

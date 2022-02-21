@@ -1,5 +1,6 @@
 import { DownloadResult } from "./downloadUrl";
 import { ChromeInstaller } from "./chrome/installer";
+import { FirefoxInstaller } from "./firefox/installer";
 
 export type InstallResult = {
   root: string;
@@ -25,6 +26,8 @@ export const installer = async (
     case "chrome":
     case "chromium":
       return ChromeInstaller(version);
+    case "firefox":
+      return FirefoxInstaller(version);
   }
   return "";
 };

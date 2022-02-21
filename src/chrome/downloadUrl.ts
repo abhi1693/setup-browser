@@ -1,8 +1,9 @@
 import DownloadUrl from "../downloadUrl";
 import { UnsupportedPlatformError } from "../errors";
 import { Arch, getPlatform, OS } from "../platform";
-import { makeBasename, makePlatformPart } from "./utils";
+import { makeBasename } from "./utils";
 import { Version } from "./version";
+import { makePlatformPart } from "../utils";
 
 export class SnapshotDownloadUrl implements DownloadUrl {
   constructor(private readonly version: string) {}

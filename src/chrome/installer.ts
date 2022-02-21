@@ -3,7 +3,7 @@
 import { getPlatform, OS } from "../platform";
 import { LatestInstaller } from "./latest";
 import { Version } from "./version";
-import { Snapshot as SnapshotInstaller } from "./snapshot";
+import { SnapshotInstaller } from "./snapshot";
 import * as core from "@actions/core";
 import path from "path";
 import {

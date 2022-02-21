@@ -1,8 +1,8 @@
 import { InstallerFactory } from "./installerFactory";
 import * as hc from "@actions/http-client";
 import * as tc from "@actions/tool-cache";
-import { Snapshot as SnapshotInstaller } from "./snapshot";
-import { makePlatformPart } from "./utils";
+import { SnapshotInstaller } from "./snapshot";
+import { makePlatformPart } from "../utils";
 import { getPlatform } from "../platform";
 import { InstallResult } from "../installer";
 import { DownloadResult } from "../downloadUrl";
