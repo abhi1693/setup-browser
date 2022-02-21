@@ -1,0 +1,26 @@
+name: 'Setup Browser'
+description: 'Install and setup various different browsers'
+author: "Abhimanyu Saharan"
+branding:
+  icon: 'bookmark'
+  color: 'gray-dark'
+inputs:
+  browser:
+    description: |-
+      The browser to install [chrome, edge, firefox].
+    required: true
+  version:
+    description: |-
+      The version to install.
+    required: false
+    default: latest
+outputs:
+  binary:
+    description: |-
+      The name of the installed binary.
+  path:
+    description: |-
+      Path of the installed binary.
+runs:
+  using: 'node12'
+  main: 'index.js'
