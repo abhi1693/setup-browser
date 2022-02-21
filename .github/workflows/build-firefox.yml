@@ -44,6 +44,6 @@ jobs:
           version: ${{ matrix.version }}
       - if: runner.os != 'Windows'
         run: ${{ steps.browser.outputs.binary }} --version
-      - run: ls "${{ steps.browser.outputs.path }}\${{ steps.browser.outputs.binary }}"
+      - run: ls "${{ steps.browser.outputs.path }}"
       - if: runner.os == 'Windows'
         run: (Get-Item (Get-Command "${{ steps.browser.outputs.path }}\${{ steps.browser.outputs.binary }}").Source).VersionInfo.ProductVersion
