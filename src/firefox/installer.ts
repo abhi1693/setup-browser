@@ -4,7 +4,11 @@ import { getPlatform, OS } from "../platform";
 import * as core from "@actions/core";
 import path from "path";
 import { Version } from "./version";
-import { LinuxInstaller, WindowsInstaller } from "./installerFactory";
+import {
+  LinuxInstaller,
+  MacOsInstaller,
+  WindowsInstaller,
+} from "./installerFactory";
 
 export const FirefoxInstaller = async (version: string): Promise<string> => {
   const platform = getPlatform();
@@ -19,6 +23,8 @@ export const FirefoxInstaller = async (version: string): Promise<string> => {
             return new LinuxInstaller();
           case OS.WINDOWS:
             return new WindowsInstaller();
+          case OS.DARWIN:
+            return new MacOsInstaller();
         }
     }
   })();
@@ -39,7 +45,7 @@ export const FirefoxInstaller = async (version: string): Promise<string> => {
     core.info(`Successfully installed firefox to ${path.join(root, bin)}`);
     return path.join(root, bin);
   } else {
-    core.setFailed(`Installer for ${platform} not found`);
+    core.setFailed(`Installer for ${platform.os} (${version}) not found`);
     return "";
   }
 };
