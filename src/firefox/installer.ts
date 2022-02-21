@@ -4,7 +4,7 @@ import { getPlatform, OS } from "../platform";
 import * as core from "@actions/core";
 import path from "path";
 import { Version } from "./version";
-import { LinuxInstaller } from "./installerFactory";
+import { LinuxInstaller, WindowsInstaller } from "./installerFactory";
 
 export const FirefoxInstaller = async (version: string): Promise<string> => {
   const platform = getPlatform();
@@ -17,6 +17,8 @@ export const FirefoxInstaller = async (version: string): Promise<string> => {
         switch (platform.os) {
           case OS.LINUX:
             return new LinuxInstaller();
+          case OS.WINDOWS:
+            return new WindowsInstaller();
         }
     }
   })();

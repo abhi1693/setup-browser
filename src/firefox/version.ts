@@ -5,9 +5,9 @@ export const Version = {
   LATEST: "latest",
 } as const;
 
-export type LatestVersion = typeof Version[keyof typeof Version];
+export type LATEST_VERSION = typeof Version[keyof typeof Version];
 
-export const isLatestVersion = (version: string): version is LatestVersion => {
+export const isLatestVersion = (version: string): version is LATEST_VERSION => {
   return (
     version === Version.LATEST ||
     version === Version.LATEST_BETA ||

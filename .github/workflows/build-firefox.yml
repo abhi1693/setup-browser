@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         version: [latest, latest-devedition, latest-beta, latest-esr]
-        os: [ubuntu]
+        os: [ubuntu, windows]
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
@@ -44,3 +44,5 @@ jobs:
           version: ${{ matrix.version }}
       - if: runner.os != 'Windows'
         run: ${{ steps.browser.outputs.binary }} --version
+      - if: runner.os == 'Windows'
+        run: (Get-Item (Get-Command ${{ steps.browser.outputs.binary }}).Source).VersionInfo.ProductVersion
