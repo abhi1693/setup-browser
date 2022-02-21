@@ -17,6 +17,9 @@ jobs:
       matrix:
         version: [latest, latest-devedition, latest-beta, latest-esr]
         os: [ubuntu, windows, macos]
+        exclude:
+          - os: macos
+            version: latest-devedition
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
@@ -44,3 +47,5 @@ jobs:
           version: ${{ matrix.version }}
       - if: runner.os != 'Windows'
         run: ${{ steps.browser.outputs.binary }} --version
+      - if: runner.os == 'Windows'
+        run: (Get-Item (Get-Command "${{ steps.browser.outputs.path }}\${{ steps.browser.outputs.binary }}").Source).VersionInfo.ProductVersion

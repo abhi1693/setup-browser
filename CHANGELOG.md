@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.3.0](https://github.com/abhi1693/setup-browser/tree/v0.3.0) (2022-02-21)
+
+[Full Changelog](https://github.com/abhi1693/setup-browser/compare/v0.2.0...v0.3.0)
+
+**Merged pull requests:**
+
+- Added firefox for macos [\#15](https://github.com/abhi1693/setup-browser/pull/15) ([abhi1693](https://github.com/abhi1693))
+- Updated packages [\#14](https://github.com/abhi1693/setup-browser/pull/14) ([abhi1693](https://github.com/abhi1693))
+- Added firefox for windows [\#13](https://github.com/abhi1693/setup-browser/pull/13) ([abhi1693](https://github.com/abhi1693))
+
 ## [v0.2.0](https://github.com/abhi1693/setup-browser/tree/v0.2.0) (2022-02-21)
 
 [Full Changelog](https://github.com/abhi1693/setup-browser/compare/v0.1.1...v0.2.0)

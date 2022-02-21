@@ -88,7 +88,7 @@ export class WindowsInstaller implements InstallerFactory {
     }
     await exec.exec(archive, [
       "/S",
-      `/InstallDirectoryName=${this.rootDir(version)}`,
+      `/InstallDirectoryName=Firefox_${version}`,
     ]);
     core.info(`Successfully install firefox to ${this.rootDir(version)}`);
 
