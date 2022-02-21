@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         version: [latest, latest-devedition, latest-beta, latest-esr]
-        os: [ubuntu, windows]
+        os: [ubuntu, windows, macos]
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
