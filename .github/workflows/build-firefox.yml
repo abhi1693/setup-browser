@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [latest, latest-devedition, latest-beta, latest-esr, 97]
+        version: [latest, latest-devedition, latest-beta, latest-esr]
         os: [ubuntu, windows]
     runs-on: ${{ matrix.os }}-latest
     steps:
