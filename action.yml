@@ -18,6 +18,9 @@ outputs:
   binary:
     description: |-
       The name of the installed binary.
+  path:
+    description: |-
+      Path of the installed binary.
 runs:
   using: 'node12'
   main: 'index.js'
