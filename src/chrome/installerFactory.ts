@@ -100,7 +100,7 @@ export class WindowsInstaller implements InstallerFactory {
       throw new UnsupportedPlatformError(getPlatform(), version);
     }
     await exec.exec(archive, ["/silent", "/install"]);
-    core.info(`Successfully install chromium tp ${this.rootDir(version)}`);
+    core.info(`Successfully install chromium to ${this.rootDir(version)}`);
 
     return { root: this.rootDir(version), bin: "chrome.exe" };
   }
@@ -189,7 +189,7 @@ export class MacOsInstaller implements InstallerFactory {
 
     root = await tc.cacheDir(root, "chromium", version);
     await fs.promises.symlink(path.basename(bin), path.join(root, bin2));
-    core.info(`Successfully install chromium tp ${root}`);
+    core.info(`Successfully install chromium to ${root}`);
 
     return { root, bin: bin2 };
   }
