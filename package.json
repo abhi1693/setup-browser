@@ -1,6 +1,6 @@
 {
   "name": "setup-browser",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Set up your GitHub Actions workflow with a specific version of browser",
   "main": "dist/index.js",
   "scripts": {
