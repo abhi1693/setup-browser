@@ -1,6 +1,4 @@
-<p>
-  <a href="https://github.com/abhi1693/setup-browser/actions"><img alt="action status" src="https://github.com/abhi1693/setup-browser/workflows/action%20ci/badge.svg"></a>
-</p>
+[![action ci - chrome](https://github.com/abhi1693/setup-browser/actions/workflows/build-chrome.yml/badge.svg)](https://github.com/abhi1693/setup-browser/actions/workflows/build-chrome.yml) [![action ci - firefox](https://github.com/abhi1693/setup-browser/actions/workflows/build-firefox.yml/badge.svg)](https://github.com/abhi1693/setup-browser/actions/workflows/build-firefox.yml)
 
 # setup-browser
 
