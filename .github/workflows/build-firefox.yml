@@ -17,6 +17,9 @@ jobs:
       matrix:
         version: [latest, latest-devedition, latest-beta, latest-esr]
         os: [ubuntu, windows, macos]
+        exclude:
+          - os: macos
+            version: latest-devedition
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
