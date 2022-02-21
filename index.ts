@@ -21,8 +21,10 @@ async function run(): Promise<void> {
     core.setOutput("path", path.join(installDir));
     core.addPath(path.join(installDir));
     core.info(`Successfully installed ${browser} version ${version}`);
-  } catch (e) {
-    core.setFailed(e.message);
+  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    core.setFailed(error.message);
   }
 }
 

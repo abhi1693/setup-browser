@@ -39,7 +39,7 @@ export const FirefoxInstaller = async (version: string): Promise<string> => {
     core.info(`Successfully installed firefox to ${path.join(root, bin)}`);
     return path.join(root, bin);
   } else {
-    core.error(`Installer for ${platform} not found`);
+    core.setFailed(`Installer for ${platform} not found`);
     return "";
   }
 };
