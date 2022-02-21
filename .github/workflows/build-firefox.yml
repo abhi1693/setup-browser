@@ -30,7 +30,7 @@ jobs:
       - name: Package action
         run: yarn package
 
-      - name: Install chrome ${{ matrix.version }}
+      - name: Install firefox ${{ matrix.version }}
         uses: ./dist/
         id: browser
         with:
