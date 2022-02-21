@@ -18,7 +18,6 @@ export const ChromeInstaller = async (version: string): Promise<string> => {
     switch (version) {
       case Version.LATEST:
         return new LatestInstaller();
-      case Version.CANARY:
       case Version.DEV:
       case Version.BETA:
       case Version.STABLE:

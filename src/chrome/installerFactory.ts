@@ -33,10 +33,6 @@ export class LinuxInstaller implements InstallerFactory {
       throw new Error(`Unexpected version: ${version}`);
     }
 
-    if (version === Version.CANARY) {
-      new UnsupportedPlatformError(getPlatform(), version);
-    }
-
     const url = new DownloadUrlFactory(version).create().getUrl();
     core.info(`Downloading chromium ${version} from ${url}`);
     const archive = await tc.downloadTool(url);
@@ -118,8 +114,6 @@ export class WindowsInstaller implements InstallerFactory {
         return "C:\\Program Files\\Google\\Chrome Beta\\Application";
       case Version.DEV:
         return "C:\\Program Files\\Google\\Chrome Dev\\Application";
-      case Version.CANARY:
-        return "C:\\Program Files\\Google\\Chrome SxS\\Application";
       default:
         throw new UnsupportedPlatformError(getPlatform(), version);
     }
@@ -174,8 +168,6 @@ export class MacOsInstaller implements InstallerFactory {
           return path.join(mountPoint, "Google Chrome Beta.app");
         case Version.DEV:
           return path.join(mountPoint, "Google Chrome Dev.app");
-        case Version.CANARY:
-          return path.join(mountPoint, "Google Chrome Canary.app");
         default:
           throw new UnsupportedPlatformError(getPlatform(), version);
       }
@@ -189,8 +181,6 @@ export class MacOsInstaller implements InstallerFactory {
           return "Contents/MacOS/Google Chrome Beta";
         case Version.DEV:
           return "Contents/MacOS/Google Chrome Dev";
-        case Version.CANARY:
-          return "Contents/MacOS/Google Chrome Canary";
         default:
           throw new UnsupportedPlatformError(getPlatform(), version);
       }

@@ -15,13 +15,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [latest, dev, beta, canary, stable, 850100]
+        version: [latest, dev, beta, stable, 850100]
         os: [ubuntu, macos, windows]
         exclude:
-          - os: ubuntu
-            version: canary
-          - os: windows
-            version: canary
           - os: macos
             version: 850100
     runs-on: ${{ matrix.os }}-latest
