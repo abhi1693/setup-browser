@@ -41,6 +41,7 @@ jobs:
 
       - name: Install chrome ${{ matrix.version }}
         id: browser
+        uses: ./
         with:
           browser: chrome
           version: ${{ matrix.version }}
