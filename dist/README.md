@@ -17,7 +17,7 @@ Basic usage:
 
 ```yaml
 steps:
-  - uses: abhi1693/setup-browser@latest
+  - uses: abhi1693/setup-browser@v0.3.4
     with:
       browser: chrome
       version: latest
