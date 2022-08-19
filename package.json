@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/abhi1693/setup-browser#readme",
   "dependencies": {
-    "@actions/core": "^1.6.0",
+    "@actions/core": "^1.9.1",
     "@actions/http-client": "^1.0.11",
     "@actions/tool-cache": "^1.7.1"
   },
