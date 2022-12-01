@@ -9201,9 +9201,6 @@ class LinuxInstaller {
     }
     install(version, archive) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!(0, version_1.isLatestVersion)(version)) {
-                throw new Error(`Unexpected version: ${version}`);
-            }
             core.info("Extracting Firefox...");
             const extPath = yield tc.extractTar(archive, "", [
                 "xj",
@@ -9226,6 +9223,7 @@ class WindowsInstaller {
                 case version_1.Version.LATEST_ESR:
                 case version_1.Version.LATEST_BETA:
                 case version_1.Version.LATEST_DEV_EDITION:
+                case version:
                     return `C:\\Program Files\\Firefox_${version}`;
                 default:
                     throw new errors_1.UnsupportedPlatformError((0, platform_1.getPlatform)(), version);
@@ -9234,9 +9232,6 @@ class WindowsInstaller {
     }
     checkInstalled(version) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!(0, version_1.isLatestVersion)(version)) {
-                throw new errors_1.UnsupportedPlatformError((0, platform_1.getPlatform)(), version);
-            }
             const root = tc.find("firefox", version);
             if (root) {
                 return { root, bin: "firefox.exe" };
@@ -9246,9 +9241,6 @@ class WindowsInstaller {
     }
     download(version) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!(0, version_1.isLatestVersion)(version)) {
-                throw new errors_1.UnsupportedPlatformError((0, platform_1.getPlatform)(), version);
-            }
             const url = new downloadUrlFactory_1.DownloadUrlFactory(version).create().getUrl();
             core.info(`Downloading firefox ${version} from ${url}`);
             const archive = yield tc.downloadTool(url);
@@ -9258,9 +9250,6 @@ class WindowsInstaller {
     }
     install(version, archive) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!(0, version_1.isLatestVersion)(version)) {
-                throw new errors_1.UnsupportedPlatformError((0, platform_1.getPlatform)(), version);
-            }
             yield exec.exec(archive, [
                 "/S",
                 `/InstallDirectoryName=Firefox_${version}`,
@@ -9274,9 +9263,6 @@ exports.WindowsInstaller = WindowsInstaller;
 class MacOsInstaller {
     checkInstalled(version) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!(0, version_1.isLatestVersion)(version)) {
-                throw new errors_1.UnsupportedPlatformError((0, platform_1.getPlatform)(), version);
-            }
             const root = tc.find("firefox", version);
             if (root) {
                 return { root, bin: "Contents/MacOS/firefox" };
@@ -9286,9 +9272,6 @@ class MacOsInstaller {
     }
     download(version) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!(0, version_1.isLatestVersion)(version)) {
-                throw new errors_1.UnsupportedPlatformError((0, platform_1.getPlatform)(), version);
-            }
             const url = new downloadUrlFactory_1.DownloadUrlFactory(version).create().getUrl();
             core.info(`Downloading firefox ${version} from ${url}`);
             const archive = yield tc.downloadTool(url);
@@ -9297,9 +9280,6 @@ class MacOsInstaller {
     }
     install(version, archive) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!(0, version_1.isLatestVersion)(version)) {
-                throw new errors_1.UnsupportedPlatformError((0, platform_1.getPlatform)(), version);
-            }
             const mountPoint = path_1.default.join("/Volumes", path_1.default.basename(archive));
             yield exec.exec("hdiutil", [
                 "attach",
@@ -9316,6 +9296,7 @@ class MacOsInstaller {
                     case version_1.Version.LATEST_BETA:
                     case version_1.Version.LATEST_ESR:
                     case version_1.Version.LATEST:
+                    case version:
                         return path_1.default.join(mountPoint, "Firefox.app");
                     default:
                         throw new errors_1.UnsupportedPlatformError((0, platform_1.getPlatform)(), version);
