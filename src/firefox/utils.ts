@@ -29,13 +29,13 @@ export const productPart = (version: string): string => {
 
 export const makePlatformPart = ({ os, arch }: Platform): string => {
   if (os === OS.DARWIN && arch === Arch.AMD64) {
-    return "osx";
+    return "mac";
   } else if (os === OS.LINUX && arch === Arch.I686) {
-    return "linux";
+    return "linux-i686";
   } else if (os === OS.LINUX && arch === Arch.AMD64) {
     return "linux-x86_64";
   } else if (os === OS.WINDOWS && arch === Arch.I686) {
-    return "win";
+    return "win32";
   } else if (os === OS.WINDOWS && arch === Arch.AMD64) {
     return "win64";
   }
