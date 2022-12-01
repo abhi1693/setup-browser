@@ -8997,7 +8997,7 @@ class ArchiveDownloadUrl {
     }
     getUrl() {
         const platform = (0, platform_1.getPlatform)();
-        return `https://ftp.mozilla.org/pub/firefox/releases/${this.version}/${(0, utils_1.makePlatformPart)(platform)}/en-US/${(0, utils_2.makeBasename)(platform, this.version)}`;
+        return `https://ftp.mozilla.org/pub/firefox/releases/${this.version}/${(0, utils_1.makePlatformPartVersion)(platform)}/en-US/${(0, utils_2.makeBasename)(platform, this.version)}`;
     }
 }
 exports.ArchiveDownloadUrl = ArchiveDownloadUrl;
@@ -9340,7 +9340,7 @@ exports.MacOsInstaller = MacOsInstaller;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.makePlatformPart = exports.productPart = exports.makeBasename = void 0;
+exports.makePlatformPartVersion = exports.makePlatformPart = exports.productPart = exports.makeBasename = void 0;
 const platform_1 = __nccwpck_require__(2999);
 const version_1 = __nccwpck_require__(704);
 const makeBasename = ({ os }, version) => {
@@ -9377,7 +9377,7 @@ const makePlatformPart = ({ os, arch }) => {
         return "linux";
     }
     else if (os === platform_1.OS.LINUX && arch === platform_1.Arch.AMD64) {
-        return "linux-x86_64";
+        return "linux64";
     }
     else if (os === platform_1.OS.WINDOWS && arch === platform_1.Arch.I686) {
         return "win";
@@ -9388,6 +9388,25 @@ const makePlatformPart = ({ os, arch }) => {
     throw new Error(`Unsupported platform "${os}" "${arch}"`);
 };
 exports.makePlatformPart = makePlatformPart;
+const makePlatformPartVersion = ({ os, arch }) => {
+    if (os === platform_1.OS.DARWIN && arch === platform_1.Arch.AMD64) {
+        return "mac";
+    }
+    else if (os === platform_1.OS.LINUX && arch === platform_1.Arch.I686) {
+        return "linux-i686";
+    }
+    else if (os === platform_1.OS.LINUX && arch === platform_1.Arch.AMD64) {
+        return "linux-x86_64";
+    }
+    else if (os === platform_1.OS.WINDOWS && arch === platform_1.Arch.I686) {
+        return "win32";
+    }
+    else if (os === platform_1.OS.WINDOWS && arch === platform_1.Arch.AMD64) {
+        return "win64";
+    }
+    throw new Error(`Unsupported platform "${os}" "${arch}"`);
+};
+exports.makePlatformPartVersion = makePlatformPartVersion;
 
 
 /***/ }),
