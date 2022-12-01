@@ -20,14 +20,14 @@ jobs:
     if: github.ref_protected != 'true'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: "Generate changelog"
         id: changelog
         uses: charmixer/auto-changelog-action@v1.4
         with:
           token: ${{ secrets.GIT_TOKEN }}
       - name: Commit and push to dev
-        uses: EndBug/add-and-commit@v8
+        uses: EndBug/add-and-commit@v9
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
         with:
