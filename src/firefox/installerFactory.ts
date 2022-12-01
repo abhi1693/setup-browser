@@ -35,10 +35,6 @@ export class LinuxInstaller implements InstallerFactory {
   }
 
   async install(version: string, archive: string): Promise<InstallResult> {
-    if (!isLatestVersion(version)) {
-      throw new Error(`Unexpected version: ${version}`);
-    }
-
     core.info("Extracting Firefox...");
     const extPath = await tc.extractTar(archive, "", [
       "xj",
@@ -55,10 +51,6 @@ export class LinuxInstaller implements InstallerFactory {
 
 export class WindowsInstaller implements InstallerFactory {
   async checkInstalled(version: string): Promise<InstallResult | undefined> {
-    if (!isLatestVersion(version)) {
-      throw new UnsupportedPlatformError(getPlatform(), version);
-    }
-
     const root = tc.find("firefox", version);
     if (root) {
       return { root, bin: "firefox.exe" };
@@ -67,10 +59,6 @@ export class WindowsInstaller implements InstallerFactory {
   }
 
   async download(version: string): Promise<DownloadResult> {
-    if (!isLatestVersion(version)) {
-      throw new UnsupportedPlatformError(getPlatform(), version);
-    }
-
     const url = new DownloadUrlFactory(version).create().getUrl();
     core.info(`Downloading firefox ${version} from ${url}`);
     const archive = await tc.downloadTool(url);
@@ -79,9 +67,6 @@ export class WindowsInstaller implements InstallerFactory {
   }
 
   async install(version: string, archive: string): Promise<InstallResult> {
-    if (!isLatestVersion(version)) {
-      throw new UnsupportedPlatformError(getPlatform(), version);
-    }
     await exec.exec(archive, [
       "/S",
       `/InstallDirectoryName=Firefox_${version}`,
@@ -91,12 +76,13 @@ export class WindowsInstaller implements InstallerFactory {
     return { root: this.rootDir(version), bin: "firefox.exe" };
   }
 
-  private rootDir = (version: LATEST_VERSION) => {
+  private rootDir = (version: string) => {
     switch (version) {
       case Version.LATEST:
       case Version.LATEST_ESR:
       case Version.LATEST_BETA:
       case Version.LATEST_DEV_EDITION:
+      case version:
         return `C:\\Program Files\\Firefox_${version}`;
       default:
         throw new UnsupportedPlatformError(getPlatform(), version);
@@ -106,10 +92,6 @@ export class WindowsInstaller implements InstallerFactory {
 
 export class MacOsInstaller implements InstallerFactory {
   async checkInstalled(version: string): Promise<InstallResult | undefined> {
-    if (!isLatestVersion(version)) {
-      throw new UnsupportedPlatformError(getPlatform(), version);
-    }
-
     const root = tc.find("firefox", version);
     if (root) {
       return { root, bin: "Contents/MacOS/firefox" };
@@ -118,10 +100,6 @@ export class MacOsInstaller implements InstallerFactory {
   }
 
   async download(version: string): Promise<DownloadResult> {
-    if (!isLatestVersion(version)) {
-      throw new UnsupportedPlatformError(getPlatform(), version);
-    }
-
     const url = new DownloadUrlFactory(version).create().getUrl();
     core.info(`Downloading firefox ${version} from ${url}`);
     const archive = await tc.downloadTool(url);
@@ -129,10 +107,6 @@ export class MacOsInstaller implements InstallerFactory {
   }
 
   async install(version: string, archive: string): Promise<InstallResult> {
-    if (!isLatestVersion(version)) {
-      throw new UnsupportedPlatformError(getPlatform(), version);
-    }
-
     const mountPoint = path.join("/Volumes", path.basename(archive));
 
     await exec.exec("hdiutil", [
@@ -151,6 +125,7 @@ export class MacOsInstaller implements InstallerFactory {
         case Version.LATEST_BETA:
         case Version.LATEST_ESR:
         case Version.LATEST:
+        case version:
           return path.join(mountPoint, "Firefox.app");
         default:
           throw new UnsupportedPlatformError(getPlatform(), version);
