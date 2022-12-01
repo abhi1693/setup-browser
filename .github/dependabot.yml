@@ -3,13 +3,13 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     labels:
-      - "type: dependencies"
+      - "dependencies"
     schedule:
       interval: "daily"
   - package-ecosystem: npm
     directory: "/"
     labels:
-      - "type: dependencies"
+      - "dependencies"
     target-branch: dev
     schedule:
       interval: "daily"
