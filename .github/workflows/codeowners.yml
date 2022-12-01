@@ -25,7 +25,7 @@ jobs:
           # the fetch depth 0 (=all) is important
           fetch-depth: 0
       - name: update code owners
-        uses: gofunky/update-codeowners@v0.3.1
+        uses: gofunky/update-codeowners@v0.3.2
         with:
           distribution: 25
           token: ${{ secrets.CODEOWNER_TOKEN }}
