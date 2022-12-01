@@ -20,6 +20,8 @@ jobs:
         exclude:
           - os: macos
             version: 1000000
+          - os: windows
+            version: 1000000
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
