@@ -10,7 +10,7 @@ export class ArchiveDownloadUrl implements DownloadUrl {
     const platform = getPlatform();
     return `https://ftp.mozilla.org/pub/firefox/releases/${
       this.version
-    }/${makePlatformPart(platform)}/en/${makeBasename(platform, this.version)}`;
+    }/${makePlatformPart(platform)}/en-US/${makeBasename(platform, this.version)}`;
   }
 }
 

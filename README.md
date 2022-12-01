@@ -7,9 +7,11 @@ This action sets various different browsers for use:
 - [x] Install and setup latest Chrome
 - [ ] Install and setup latest Edge
 - [x] Install and setup latest Firefox
-- [x] Cross platform runner (macOS, Linux, Windows)
+- [x] Cross-platform runner (macOS, Linux, Windows)
 - [x] Install by channel (stable, beta, dev)
 - [x] Install by version number (88.0.4324, or 88.0)
+
+_Note: For Chrome versions refer to https://www.chromium.org/getting-involved/download-chromium/_
 
 ## Usage
 

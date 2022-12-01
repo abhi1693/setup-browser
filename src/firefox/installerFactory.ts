@@ -28,10 +28,6 @@ export class LinuxInstaller implements InstallerFactory {
   }
 
   async download(version: string): Promise<DownloadResult> {
-    if (!isLatestVersion(version)) {
-      throw new Error(`Unexpected version: ${version}`);
-    }
-
     const url = new DownloadUrlFactory(version).create().getUrl();
     core.info(`Downloading firefox ${version} from ${url}`);
     const archive = await tc.downloadTool(url);
