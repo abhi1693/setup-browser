@@ -17,6 +17,9 @@ jobs:
       matrix:
         version: [latest, dev, beta, stable, 1000000]
         os: [ubuntu, macos, windows]
+        exclude:
+          - os: macos
+            version: 1000000
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v2
