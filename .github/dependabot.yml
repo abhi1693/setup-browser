@@ -1,6 +1,15 @@
 version: 2
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    labels:
+      - "type: dependencies"
     schedule:
-      interval: 'daily'
+      interval: "daily"
+  - package-ecosystem: npm
+    directory: "/"
+    labels:
+      - "type: dependencies"
+    target-branch: dev
+    schedule:
+      interval: "daily"
