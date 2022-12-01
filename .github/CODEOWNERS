@@ -1,9 +1,13 @@
 /.eslintrc.json desk.abhimanyu@gmail.com
 /.github/* 41898282+github-actions[bot]@users.noreply.github.com
 /.github/workflows/* desk.abhimanyu@gmail.com
+/.idea/* desk.abhimanyu@gmail.com
+/.idea/inspectionProfiles/* desk.abhimanyu@gmail.com
 /CHANGELOG.md 41898282+github-actions[bot]@users.noreply.github.com
-/README.md abhi1693@users.noreply.github.com
+/LICENSE desk.abhimanyu@gmail.com
+/README.md desk.abhimanyu@gmail.com
 /action.yml desk.abhimanyu@gmail.com
+/dist/* desk.abhimanyu@gmail.com
 /index.ts desk.abhimanyu@gmail.com
 /package.json desk.abhimanyu@gmail.com
 /src/* desk.abhimanyu@gmail.com
