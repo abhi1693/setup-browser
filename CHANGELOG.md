@@ -1,5 +1,20 @@
 # Changelog
 
+## [v0.3.5](https://github.com/abhi1693/setup-browser/tree/v0.3.5) (2022-12-02)
+
+[Full Changelog](https://github.com/abhi1693/setup-browser/compare/v0.3.4...v0.3.5)
+
+**Fixed bugs:**
+
+- Fixed firefox installer [\#22](https://github.com/abhi1693/setup-browser/pull/22) ([abhi1693](https://github.com/abhi1693))
+
+**Merged pull requests:**
+
+- Bump hmarr/auto-approve-action from 2.0.0 to 3.1.0 [\#28](https://github.com/abhi1693/setup-browser/pull/28) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump EndBug/add-and-commit from 8 to 9 [\#27](https://github.com/abhi1693/setup-browser/pull/27) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/checkout from 2 to 3 [\#26](https://github.com/abhi1693/setup-browser/pull/26) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/cache from 2 to 3 [\#24](https://github.com/abhi1693/setup-browser/pull/24) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.3.4](https://github.com/abhi1693/setup-browser/tree/v0.3.4) (2022-08-19)
 
 [Full Changelog](https://github.com/abhi1693/setup-browser/compare/v0.3.3...v0.3.4)
