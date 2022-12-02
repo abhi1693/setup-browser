@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [latest, latest-devedition, latest-beta, latest-esr]
+        version: [latest, latest-devedition, latest-beta, latest-esr, '84.0' ]
         os: [ubuntu, windows, macos]
         exclude:
           - os: macos

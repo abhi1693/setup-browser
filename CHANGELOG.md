@@ -1,5 +1,29 @@
 # Changelog
 
+## [v0.3.4](https://github.com/abhi1693/setup-browser/tree/v0.3.4) (2022-08-19)
+
+[Full Changelog](https://github.com/abhi1693/setup-browser/compare/v0.3.3...v0.3.4)
+
+## [v0.3.3](https://github.com/abhi1693/setup-browser/tree/v0.3.3) (2022-08-19)
+
+[Full Changelog](https://github.com/abhi1693/setup-browser/compare/v0.3.2...v0.3.3)
+
+## [v0.3.2](https://github.com/abhi1693/setup-browser/tree/v0.3.2) (2022-08-19)
+
+[Full Changelog](https://github.com/abhi1693/setup-browser/compare/v0.3.1...v0.3.2)
+
+**Merged pull requests:**
+
+- Bump @actions/core from 1.6.0 to 1.9.1 [\#20](https://github.com/abhi1693/setup-browser/pull/20) ([dependabot[bot]](https://github.com/apps/dependabot))
+
+## [v0.3.1](https://github.com/abhi1693/setup-browser/tree/v0.3.1) (2022-02-21)
+
+[Full Changelog](https://github.com/abhi1693/setup-browser/compare/v0.3.0...v0.3.1)
+
+**Fixed bugs:**
+
+- Fixed firefox install path for windows [\#16](https://github.com/abhi1693/setup-browser/pull/16) ([abhi1693](https://github.com/abhi1693))
+
 ## [v0.3.0](https://github.com/abhi1693/setup-browser/tree/v0.3.0) (2022-02-21)
 
 [Full Changelog](https://github.com/abhi1693/setup-browser/compare/v0.2.0...v0.3.0)

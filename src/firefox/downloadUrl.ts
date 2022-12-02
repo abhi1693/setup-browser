@@ -1,4 +1,4 @@
-import { makePlatformPart } from "./utils";
+import {makePlatformPart, makePlatformPartVersion} from "./utils";
 import { getPlatform } from "../platform";
 import DownloadUrl from "../downloadUrl";
 import { makeBasename, productPart } from "./utils";
@@ -10,7 +10,7 @@ export class ArchiveDownloadUrl implements DownloadUrl {
     const platform = getPlatform();
     return `https://ftp.mozilla.org/pub/firefox/releases/${
       this.version
-    }/${makePlatformPart(platform)}/en/${makeBasename(platform, this.version)}`;
+    }/${makePlatformPartVersion(platform)}/en-US/${makeBasename(platform, this.version)}`;
   }
 }
 

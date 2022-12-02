@@ -41,3 +41,18 @@ export const makePlatformPart = ({ os, arch }: Platform): string => {
   }
   throw new Error(`Unsupported platform "${os}" "${arch}"`);
 };
+
+export const makePlatformPartVersion = ({ os, arch }: Platform): string => {
+  if (os === OS.DARWIN && arch === Arch.AMD64) {
+    return "mac";
+  } else if (os === OS.LINUX && arch === Arch.I686) {
+    return "linux-i686";
+  } else if (os === OS.LINUX && arch === Arch.AMD64) {
+    return "linux-x86_64";
+  } else if (os === OS.WINDOWS && arch === Arch.I686) {
+    return "win32";
+  } else if (os === OS.WINDOWS && arch === Arch.AMD64) {
+    return "win64";
+  }
+  throw new Error(`Unsupported platform "${os}" "${arch}"`);
+};

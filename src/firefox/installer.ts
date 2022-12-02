@@ -18,6 +18,7 @@ export const FirefoxInstaller = async (version: string): Promise<string> => {
       case Version.LATEST_BETA:
       case Version.LATEST_DEV_EDITION:
       case Version.LATEST_ESR:
+      case version:
         switch (platform.os) {
           case OS.LINUX:
             return new LinuxInstaller();

@@ -15,11 +15,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [latest, dev, beta, stable, 850100]
+        version: [latest, dev, beta, stable, 1000000]
         os: [ubuntu, macos, windows]
         exclude:
           - os: macos
-            version: 850100
+            version: 1000000
+          - os: windows
+            version: 1000000
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v3
