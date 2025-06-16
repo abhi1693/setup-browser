@@ -20,7 +20,7 @@ jobs:
     if: github.ref_protected != 'true'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: "Generate changelog"
         id: changelog
         uses: charmixer/auto-changelog-action@v1.4
